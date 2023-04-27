@@ -11,12 +11,12 @@ const pool = mysql
   })
   .promise();
 
-async function getNotes() {
+export async function getNotes() {
   const [rows] = await pool.query("SELECT * FROM notes");
   return rows;
 }
 
-async function getNote(id) {
+export async function getNote(id) {
   const [rows] = await pool.query(
     `
     SELECT * 
@@ -28,7 +28,7 @@ async function getNote(id) {
   return rows[0];
 }
 
-async function createNote(title, conents) {
+export async function createNote(title, conents) {
   const [result] = await pool.query(
     `
     INSERT INTO notes (title, conents)
@@ -40,7 +40,7 @@ async function createNote(title, conents) {
   return result.insertId;   
 }
 
-const notes = await getNotes();
-const notes1 = await getNote(1);
-const notes2 = await createNote("test", "test1");
-console.log(notes);
+// const notes = await getNotes();
+// const notes1 = await getNote(1);
+// const notes2 = await createNote("test", "test1");
+// console.log(notes);
